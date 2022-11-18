@@ -33,7 +33,7 @@ jobs:
           IMAGE_TAG: teamX-api
 
         run: 
-            docker build --build-arg DB_VAR=${DB_VAR} -t <ECR_REGISTRY>/<docker-test>:<IMAGE_TAG> .     
-            docker push <ECR_REGISTRY>/<docker-test>:<IMAGE_TAG>
+          docker build --build-arg DB_VAR=${DB_VAR} -t <ECR_REGISTRY>/<docker-test>:<IMAGE_TAG> .
+          docker push <ECR_REGISTRY>/<docker-test>:<IMAGE_TAG>
         
 
