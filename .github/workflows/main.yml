@@ -27,13 +27,28 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
         
-      - name: Build image
+      - name: Build & push the Docker image
+
         env:
+
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+
+          DB_HOST: ${{ secrets.DB_HOST }}
+
+          DB_NAME: ${{ secrets.DB_NAME }}
+
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          IMAGE_TAG: teamX-api
+
+          ECR_REPOSITORY: employee_demo
+
+          IMAGE_TAG: team5-api
 
         run: |
-          docker build --build-arg DB_VAR=${DB_VAR} -t <ECR_REGISTRY>/<docker-test>:<IMAGE_TAG> .
-          docker push <ECR_REGISTRY>/<docker-test>:<IMAGE_TAG>
+
+          docker build --build-arg DB_PASSWORD=${DB_PASSWORD} --build-arg DB_USERNAME=${DB_USERNAME} --build-arg DB_HOST=${DB_HOST} --build-arg DB_NAME=${DB_NAME} -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
         
 
