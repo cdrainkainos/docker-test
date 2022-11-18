@@ -41,7 +41,7 @@ jobs:
 
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
 
-          ECR_REPOSITORY: employee_demo
+          ECR_REPOSITORY: docker-test
 
           IMAGE_TAG: team5-api
 
