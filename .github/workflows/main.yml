@@ -1,0 +1,22 @@
+name: Docker AWS
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+
+  build:
+
+    runs-on: maven-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1 
+        with:
+          aws-access-key-id: ${{ secrets.AKIAQ7N32EZ7WBZA4N5P }}
+          aws-secret-access-key: ${{ secrets.d7xCk317W3mvbb/IAA1gHs0AIuuovABXv13v7gIb }}
+          aws-region: eu-west-1
